@@ -4,14 +4,14 @@ import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import { AlertCircle, CheckCircle2 } from 'lucide-react';
 
-import mapImg from './assets/map_of_ukraine_1.webp'
+import mapImg from './assets/map_of_ukraine_1.png'
 
 const UkraineQuiz = () => {
   const [currentRegion, setCurrentRegion] = useState('');
   const [score, setScore] = useState(0);
   const [attempts, setAttempts] = useState(0);
   const [gameStatus, setGameStatus] = useState('playing');
-  const [feedback, setFeedback] = useState('');
+  const [feedback, setFeedback] = useState('nope');
 
   const regions = {
     kyiv: 'Київ',
@@ -22,13 +22,6 @@ const UkraineQuiz = () => {
     donetsk: 'Донецьк',
     luhansk: 'Луганськ',
     crimea: 'Крим',
-  };
-
-  const regionColors = {
-    default: '#e2e8f0',
-    highlight: '#93c5fd',
-    correct: '#86efac',
-    incorrect: '#fca5a5',
   };
 
   useEffect(() => {
@@ -82,16 +75,18 @@ const UkraineQuiz = () => {
           <p className="text-3xl">
             Рахунок: {score}/{attempts} спроб
           </p>
-          {feedback && (
-            <div className="flex items-center justify-center gap-2 mt-2">
-              {feedback.includes('Правильно') ? (
-                <CheckCircle2 className="text-green-500" />
-              ) : (
-                <AlertCircle className="text-red-500" />
-              )}
-              <p>{feedback}</p>
-            </div>
-          )}
+          <div className="flex items-center justify-center h-8 gap-2 mt-2">
+            {feedback && (
+              <div className="flex items-center gap-2">
+                {feedback.includes('Правильно') ? (
+                  <CheckCircle2 className="text-green-500" />
+                ) : (
+                  <AlertCircle className="text-red-500" />
+                )}
+                <p>{feedback}</p>
+              </div>
+            )}
+          </div>
         </div>
 
         <div className="items relative w-[600px] h-[400px]">
